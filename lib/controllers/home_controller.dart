@@ -15,7 +15,7 @@ class HomeController extends GetxController with AppMixin {
     super.onInit();
   }
 
-  getMovies() async {
+  Future<void> getMovies() async {
     loader.value = true;
     await movieService.getMovies().then((v) {
       movies.value = v;

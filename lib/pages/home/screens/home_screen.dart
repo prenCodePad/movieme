@@ -83,13 +83,16 @@ class HomeScreen extends StatelessWidget with AppMixin {
             ),
             Expanded(child: Obx(() {
               if (hc.loader.value) return Center(child: CircularProgressIndicator(color: theme.themeGreen));
-              return GridView.builder(
-                itemCount: hc.movies.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 0.8, crossAxisSpacing: 20.0, mainAxisSpacing: 20.0),
-                itemBuilder: (context, index) {
-                  return EventWidget(event: hc.movies[index]);
-                },
+              return RefreshIndicator(
+                onRefresh: () async => await hc.getMovies(),
+                child: GridView.builder(
+                  itemCount: hc.movies.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 0.8, crossAxisSpacing: 20.0, mainAxisSpacing: 20.0),
+                  itemBuilder: (context, index) {
+                    return EventWidget(event: hc.movies[index]);
+                  },
+                ),
               );
             })),
           ],
