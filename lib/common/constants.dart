@@ -1,8 +1,10 @@
+import 'dart:io';
+
 class Constants {
-  static const String host = 'http://localhost:3000';
-  static const String loginUrl = '$host/login';
-  static const String signupUrl = '$host/register';
-  static const String movieUrl = '$host/movies';
+  static final String host = Platform.isIOS ? 'http://localhost:3000' : 'http://10.0.2.2:3000';
+  static final String loginUrl = '$host/login';
+  static final String signupUrl = '$host/register';
+  static final String movieUrl = '$host/movies';
 
   static const String logo = 'MovieMe!';
   static const String username = 'Username';
